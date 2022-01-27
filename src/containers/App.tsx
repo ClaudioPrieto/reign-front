@@ -71,7 +71,7 @@ const App: FC = () => {
             &lt;
           </button>
 
-          {Array.from(Array(10).keys()).map((item) => {
+          {Array.from(Array(9).keys()).map((item) => {
             return (
               <button
                 key={item}
