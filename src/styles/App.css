@@ -24,9 +24,54 @@
   color: #3b3b3b;
 }
 
-.body {
-  width: 90%;
-  margin: 0 auto;
+.show-liked-btns {
+  margin-bottom: 10px;
+}
+
+.btn-posts {
+  width: 98px;
+  height: 31px;
+  padding: 3px 16px 0 17px;
+  border-radius: 2px;
+  border: solid 1px #d6d6d6;
+  background-color: #fcfcfc;
+}
+
+.active-btn-posts {
+  width: 98px;
+  height: 31px;
+  padding: 3px 16px 0 17px;
+  border-radius: 2px;
+  border: solid 1px #1797ff;
+  background-color: #fcfcfc;
+}
+
+.btn-posts span {
+  width: 65px;
+  height: 28px;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.75;
+  letter-spacing: normal;
+  text-align: center;
+  color: #606060;
+}
+
+.active-btn-posts span {
+  width: 19px;
+  height: 28px;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.75;
+  letter-spacing: normal;
+  text-align: center;
+  color: #1797ff;
 }
 
 .dropdown-select {
