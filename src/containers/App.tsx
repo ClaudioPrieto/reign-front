@@ -52,9 +52,9 @@ const App: FC = () => {
           {posts.map((post, index) => (
             <div key={ index } className='grid-element'>
               <div className='content' onClick={ () => window.open(post.story_url, "_blank") }>
-                <div className='date-container'>
-                  <img src="/iconmonstr-time-2.svg" alt=''/>
-                  <span className='post-date'>{ new Date(post.created_at).toString() }</span>
+                <div className='post-info-container'>
+                  <img src="/iconmonstr-time-2.svg" alt=''/>  
+                  <span className='post-date'>{ new Date(post.created_at).toDateString() }</span>
                   <span className='post-author'>by { post.author }</span>
                 </div>
                 <span className='post-title'>{ post.story_title }</span>
@@ -66,13 +66,28 @@ const App: FC = () => {
           ))}
         </div>
 
-        <div className='pagination'>
-          <button className="btn next-btn" onClick={() => prevPage()}>
-            Previous
+        <div className='pagination-container'>
+          <button className="btn prev-btn" onClick={() => prevPage()}>
+            &lt;
           </button>
-          <span>{ page }</span>
+
+          {Array.from(Array(10).keys()).map((item) => {
+            return (
+              <button
+                key={item}
+                className={`page-btn ${
+                  item === page ? "active-btn" : null
+                }`}
+                onClick={() => {
+                  setPage(item);
+                }}
+              >
+                <span className='page-number'>{ item + 1}</span>
+              </button>
+            );
+          })}
           <button className="btn next-btn" onClick={() => nextPage()}>
-            Next
+            &gt;
           </button>
         </div>
       </div>
