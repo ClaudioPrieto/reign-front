@@ -4,7 +4,8 @@ import React, { FC, useState, useEffect } from "react";
 
 const PostList: FC = () => {
 
-  const baseURL = 'https://hn.algolia.com/api/v1/search_by_date'
+  const baseURL = 'https://hn.algolia.com/api/v1/search_by_date';
+  const pages = Array.from(Array(9).keys());
 
   const [posts, setPosts] = useState<any[]>([]);
   const [newsType, setNewsType] = useState<string>('angular');
@@ -19,18 +20,6 @@ const PostList: FC = () => {
   const handleLike = () => {
     console.log('Liked')
   }
-
-  const nextPage = () => {
-    if (page !== 9) {
-      setPage(page + 1);
-    }
-  };
-
-  const prevPage = () => {
-    if (page !== 0) {
-      setPage(page - 1);
-    }
-  };
 
   return (
       <div className='body'>
@@ -60,11 +49,11 @@ const PostList: FC = () => {
         </div>
 
         <div className='pagination-container'>
-          <button className="btn prev-btn" onClick={() => prevPage()}>
+          <button className="btn prev-btn" onClick={() => { page !== 0 ? setPage(page - 1) : setPage(page) }}>
             &lt;
           </button>
 
-          {Array.from(Array(9).keys()).map((item) => {
+          {pages.map((item) => {
             return (
               <button
                 key={item}
@@ -79,7 +68,7 @@ const PostList: FC = () => {
               </button>
             );
           })}
-          <button className="btn next-btn" onClick={() => nextPage()}>
+          <button className="btn next-btn" onClick={() => { page !== 8 ? setPage(page + 1) : setPage(page) }}>
             &gt;
           </button>
         </div>
