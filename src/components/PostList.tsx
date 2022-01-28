@@ -10,6 +10,7 @@ const PostList: FC = () => {
   const [posts, setPosts] = useState<any[]>([]);
   const [newsType, setNewsType] = useState<string>('angular');
   const [page, setPage] = useState<number>(0);
+  const [likes, setLikes] = useState<any[]>([]);
 
   useEffect(() => {
     axios.get(`${baseURL}?query=${newsType}&page=${page}`).then((response) => {
@@ -17,10 +18,9 @@ const PostList: FC = () => {
     });
   }, [newsType, page]);
 
-  const handleLike = () => {
-    console.log('Liked')
-  }
-
+  const handleUnlike = (id: number) => {
+    setLikes(likes.filter(item => item !== id))
+}
   return (
       <div className='body'>
         
@@ -38,12 +38,18 @@ const PostList: FC = () => {
                   <img src="/iconmonstr-time-2.svg" alt=''/>  
                   <span className='post-date'>{ new Date(post.created_at).toDateString() }</span>
                   <span className='post-author'>by { post.author }</span>
+                  <span className='post-author'>--- { post.story_id }</span>
                 </div>
                 <span className='post-title'>{ post.story_title }</span>
               </div>
-              <div className='like-button' onClick={ handleLike }>
-                <img src="/iconmonstr-favorite-2.svg" alt=''/>
-              </div>
+              { likes.includes(post.story_id) ? 
+                <div className='like-button' onClick={() => handleUnlike(post.story_id) }>
+                  <img src="/iconmonstr-favorite-3.svg" alt=''/>
+                </div> 
+                : 
+                <div className='like-button' onClick={() => setLikes([...likes, post.story_id]) }>
+                  <img src="/iconmonstr-favorite-2.svg" alt=''/>
+                </div> }
             </div>
           ))}
         </div>
