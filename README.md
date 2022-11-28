@@ -1,4 +1,4 @@
-# Frontend Dev Challenge project Reign
+# Frontend Test Inventures
 
 ## Run using Docker Compose
 
